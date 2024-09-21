@@ -1,0 +1,51 @@
+name: in-ventory
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: ./docker/nginx
+    image: in-ventory_nginx
+    depends_on:
+      - php
+    ports:
+      - 8888:80
+    networks:
+      - in-ventory
+    restart: always
+
+  php:
+    container_name: php
+    build:
+      context: ./docker/php
+      target: ${ENV:-local}
+    image: in-ventory_php
+    depends_on:
+      - mariadb
+    volumes:
+      - ./src:/var/www/src
+    networks:
+      - in-ventory
+    restart: always
+
+  mariadb:
+    container_name: mariadb
+    build:
+      context: ./docker/mariadb
+    image: in-ventory_maridb
+    volumes:
+      - mariadb-store:/var/lib/mysql
+    environment:
+      - MARIADB_ROOT_PASSWORD=Password!
+      - MARIADB_DATABASE=inventory_db
+    ports:
+      - 13306:3306
+    networks:
+      - in-ventory
+
+volumes:
+  mariadb-store:
+    name: maria-db-store
+
+networks:
+  in-ventory:
+    name: in-ventory
