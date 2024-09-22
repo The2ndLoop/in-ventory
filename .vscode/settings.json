@@ -1,0 +1,13 @@
+{
+  "terminal.integrated.scrollback": 100000,
+  "editor.renderWhitespace": "boundary",
+  "editor.guides.bracketPairs": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "stylelint.validate": ["css", "scss"],
+  "eslint.validate": ["js", "jsx", "ts", "tsx"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": "always",
+    "source.fixAll.eslint": "always"
+  }
+}
