@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function createNewUser(Request $request)
+    public function create(Request $request)
     {
         $user = User::create([
             'name' => $request->name,

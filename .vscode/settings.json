@@ -9,5 +9,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.stylelint": "always",
     "source.fixAll.eslint": "always"
+  },
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
   }
 }
