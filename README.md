@@ -1,12 +1,27 @@
 # いんべんとり
+
 エフェクターの発注管理、製品の在庫管理、パーツの在庫管理などができるアプリ
 
+## 設計
+
+基本設計や仕様については、以下を参照。  
+[基本設計.md](docs/基本設計.md)
+
 ## 仕様技術
-Laravelをベースに開発をする。
+
+| 領域              | 技術              | 備考                                                                                   |
+| ----------------- | ----------------- | -------------------------------------------------------------------------------------- |
+| バックエンド      | Laravel 11 系     | API サーバーとして利用する                                                             |
+| 認証サービス      | AWS Cognito       | Laravel の認証機能を使わず Laravel に来たリクエストを Cognito 側に連携する             |
+| データベース      | Maria DB or MySQL | MySQL Workbench を使って ER 図を管理する。ER から出力した DDL を使って DB を構成する。 |
+| フロントエンド    | React(TypeScript) | 一旦、React の想定をしているが、Next.js に変更する可能性あり                           |
+| UI フレームワーク | Chakra UI         | Tailwind だけに変更する可能性あり                                                      |
+| CSS               | CSS Modules       | SCSS を用いた BEM 記法を想定しているが、できるだけ CSS を書かない方針としたい。        |
 
 ## ローカルサーバーについて
-DockerでNginxを構築してそこからphpへプロキシしている。
-Nginx側でhostnameを設定しているため、macの場合はetc/hostsファイルに以下を追記する
+
+Docker で Nginx を構築してそこから php へプロキシしている。  
+Nginx 側で hostname を設定しているため、mac の場合は etc/hosts ファイルに以下を追記する。
 
 ```
 ::1 in-ventory.internal
