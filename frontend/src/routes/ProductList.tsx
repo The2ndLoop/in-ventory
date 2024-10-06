@@ -12,17 +12,17 @@ import {
 import { useEffect, useState } from "react";
 import { http } from "../libs/api";
 import { z } from "zod";
-import { customer } from "../schemas/customer";
+import { product } from "../schemas/product";
 
-type CustomerData = z.infer<typeof customer>;
+type ProductData = z.infer<typeof product>;
 
-const CustomerList = () => {
-  const [customerData, setCustomerData] = useState<CustomerData[]>([]);
+const ProductList = () => {
+  const [productData, setProductData] = useState<ProductData[]>([]);
   useEffect(() => {
     http
-      .get("/customers")
+      .get("/products")
       .then((res) => {
-        setCustomerData(res.data);
+        setProductData(res.data);
       })
       .catch(() => {
         console.log("error");
@@ -38,7 +38,7 @@ const CustomerList = () => {
       direction={"column"}
     >
       <Heading textAlign={"center"} my={6}>
-        顧客リスト
+        プロダクトリスト
       </Heading>
 
       <TableContainer
@@ -55,10 +55,10 @@ const CustomerList = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {customerData.map((customer) => (
+            {productData.map((product) => (
               <Tr>
-                <Td>{customer.name}</Td>
-                <Td>{customer.description}</Td>
+                <Td>{product.name}</Td>
+                <Td>{product.price}</Td>
               </Tr>
             ))}
           </Tbody>
@@ -68,4 +68,4 @@ const CustomerList = () => {
   );
 };
 
-export default CustomerList;
+export default ProductList;

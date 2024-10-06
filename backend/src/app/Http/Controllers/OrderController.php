@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Order;
+use App\Models\OrderProduct;
 
 class OrderController extends Controller
 {
@@ -29,7 +30,8 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        //
+        Order::create($request->validated());
+        OrderProduct::create($request->validated());
     }
 
     /**

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('order_products', function (Blueprint $table) {
             $table->uuid('order_id');
             $table->uuid('product_id');
+            $table->integer('qty');
             $table->primary(['order_id', 'product_id']);
             $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('product_id')->references('id')->on('products');
